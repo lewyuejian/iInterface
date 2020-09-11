@@ -31,12 +31,13 @@ do
     else
         sed -i "s/thread_num/${num}/g" ${jmx_filename}
     fi
-
+    echo ${jmeter_path}
     # JMeter 静默压测
     ${jmeter_path}/bin/jmeter -n -t ${jmx_filename} -l ${jtl_filename}
 
     # 生成Web压测报告
     ${jmeter_path}/bin/jmeter -g ${jtl_filename} -e -o ${web_report_path_name}
+
 
     rm -f ${jmx_filename} ${jtl_filename}
 done
